@@ -17,9 +17,7 @@ curl -O https://raw.githubusercontent.com/avkudr/vimconfig/main/.tmux.conf
 
 to insert at the end of `~/.zshrc`
 ```
-[[ $TERM != "screen" ]] && exec tmux
-
 if command -v tmux &> /dev/null && [ -n "$PS1"  ] && [[ ! "$TERM" =~ screen  ]] && [[ ! "$TERM" =~ tmux  ]] && [ -z "$TMUX"  ]; then
-	  exec tmux
+	exec tmux -2
 fi
 ```
