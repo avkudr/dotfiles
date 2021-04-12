@@ -6,10 +6,13 @@ set scrolloff=8
 set number relativenumber
 set noswapfile
 set nowrap
+set noshowmode
+set laststatus=2
 
 call plug#begin('~/.vim/plugged')
 Plug 'gruvbox-community/gruvbox'
 Plug 'jiangmiao/auto-pairs'
+Plug 'itchyny/lightline.vim'
 call plug#end()
 
 let mapleader = " "
