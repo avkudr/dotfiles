@@ -23,3 +23,6 @@ colorscheme gruvbox
 set background=dark
 set t_Co=256
 hi Normal guibg=NONE ctermbg=NONE
+
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '! clear; python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '! clear; python3' shellescape(@%, 1)<CR>
