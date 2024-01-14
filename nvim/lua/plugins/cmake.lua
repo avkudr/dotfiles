@@ -81,7 +81,7 @@ return {
             strategy = {
                 "toggleterm",
                 direction = "horizontal",
-                autos_croll = true,
+                auto_scroll = true,
                 quit_on_exit = "success"
             }
         }, -- options to pass into the `overseer.new_task` command

@@ -54,9 +54,23 @@ keymap({"n", "v"}, "<leader>d", [["_d]]) -- delete without overwriting the buffe
 
 -- overseer
 keymap({"n", "v"}, "<leader>o<leader>", "<cmd>OverseerToggle<CR>")
-keymap({"n", "v"}, "<leader>oq", "<cmd>OverseerQuickAction open output in quickfix<CR>")
 keymap({"n", "v"}, "<leader>os", "<cmd>OverseerQuickAction stop<CR>")
 keymap({"n", "v"}, "<leader>or", "<cmd>OverseerQuickAction restart<CR>")
+keymap({"n", "v"}, "<leader>oq", "<cmd>OverseerQuickAction open output in quickfix<CR>")
+keymap({"n", "v"}, "<leader>ox", "<cmd>OverseerQuickAction open output in quickfix<CR><cmd>ccl<CR><cmd>TroubleToggle quickfix<CR>")
+
+-- trouble
+keymap("n", "<leader>x<leader>", function() require("trouble").toggle() end, { desc = "Show trouble" })
+keymap("n", "<leader>xn", function() require("trouble").next({skip_groups = true, jump = true}) end, { desc = "Jump to next trouble" })
+keymap("n", "<leader>xb", function() require("trouble").toggle("document_diagnostics") end, { desc = "Buffer diagnostics" })
+keymap("n", "<leader>xN", function() require("trouble").next({skip_groups = true, jump = true}) end, { desc = "Jump to previous trouble" })
+keymap("n", "<leader>xl", function() require("trouble").toggle("lsp_references") end, { desc = "Lsp references" })
+
+-- Resize
+keymap("n", "<C-Up>", ":resize +2<CR>", { silent = true, desc = "Increase window height" })
+keymap("n", "<C-Down>", ":resize -2<CR>", { silent = true, desc = "Decrease window height" })
+keymap("n", "<C-Left>", ":vertical :resize -2<CR>", { silent = true, desc = "Decrease window width" })
+keymap("n", "<C-Right>", ":vertical :resize +2<CR>", { silent = true, desc = "Increase window width" })
 
 ------------------------ Insert Mode -------------------------------------------
 
