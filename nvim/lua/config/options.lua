@@ -22,7 +22,7 @@ local options = {
     mouse = 'a', -- allow the mouse to be used in neovim
     breakindent = true,
     undofile = true, -- save undo history
-    
+    laststatus = 3, -- make sure that lualine is shown only once 
 }
 
 for k, v in pairs(options) do
