@@ -72,6 +72,10 @@ keymap("n", "<C-Down>", ":resize -2<CR>", { silent = true, desc = "Decrease wind
 keymap("n", "<C-Left>", ":vertical :resize -2<CR>", { silent = true, desc = "Decrease window width" })
 keymap("n", "<C-Right>", ":vertical :resize +2<CR>", { silent = true, desc = "Increase window width" })
 
+-- Clangd
+keymap("n", "<F4>", "<cmd>ClangdSwitchSourceHeader<CR>", { silent = true, desc = "Switch source/header cpp" })
+
+
 ------------------------ Insert Mode -------------------------------------------
 
 ------------------------ Visual Mode -------------------------------------------
