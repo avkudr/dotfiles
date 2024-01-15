@@ -23,6 +23,7 @@ local options = {
     breakindent = true,
     undofile = true, -- save undo history
     laststatus = 3, -- make sure that lualine is shown only once 
+    pumheight = 12, -- max number of results when doing autocomplete
 }
 
 for k, v in pairs(options) do
