@@ -98,6 +98,18 @@ lspconfig.clangd.setup({
       cmake.clangd_on_new_config(new_config)
     end
   end,
-  cmd = require("plugins.lsp.settings.clangd").cmd
+  cmd = require("plugins.lsp.settings.clangd").cmd,
+  filetypes = require("plugins.lsp.settings.clangd").filetypes
 })
+
+-- python ------------------------------------------------------------------------------------
+
+lspconfig.pyright.setup
+{
+    on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        require("clangd_extensions.inlay_hints").setup_autocmd()
+        require("clangd_extensions.inlay_hints").set_inlay_hints()
+    end,
+}
 

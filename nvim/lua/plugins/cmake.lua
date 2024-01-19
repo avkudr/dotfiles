@@ -58,7 +58,7 @@ return {
             require("overseer").open(
                 { 
                     enter = false, 
-                    direction = "left" 
+                    direction = "right" 
                 }
             )
         end,   -- a function that gets overseer.Task when it is created, before calling `task:start`

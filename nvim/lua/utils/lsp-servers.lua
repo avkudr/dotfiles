@@ -13,6 +13,7 @@ M.all_servers = {
   "texlab",
   "angularls",
   "eslint",
+  "pyright",
   "cmake"
 }
 
@@ -24,6 +25,7 @@ M.regular_servers = {
   "texlab",
   "angularls",
   "eslint",
+  "pyright",
   "cmake"
 }
 

@@ -20,8 +20,8 @@ keymap("n", "<leader>bd", "<cmd>Bdelete!<CR>", { desc = "Delete current buffer" 
 -- cmake
 keymap("n", "<leader>cg", "<cmd>CMakeGenerate<CR>", { desc = "Generate" })
 keymap("n", "<leader>cx", "<cmd>CMakeGenerate!<CR>", { desc = "Clean and generate" })
-keymap("n", "<leader>cb", "<cmd>CMakeBuild<CR>", { desc = "Build" })
-keymap("n", "<leader>cr", "<cmd>CMakeRun<CR>", { desc = "Run" })
+keymap("n", "<leader>cb", "<cmd>TroubleClose<CR><cmd>CMakeBuild<CR>", { desc = "Build" })
+keymap("n", "<leader>cr", "<cmd>TroubleClose<CR><cmd>CMakeRun<CR>", { desc = "Run" })
 keymap("n", "<leader>cy", "<cmd>CMakeSelectBuildType<CR>", { desc = "Select Build Type" })
 keymap("n", "<leader>cl", "<cmd>CMakeSelectTarget<CR>", { desc = "Select Target" })
 keymap("n", "<leader>ce", "<cmd>CMakeOpenExecutor<CR>", { desc = "Open CMake Console" })
