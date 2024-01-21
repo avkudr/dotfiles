@@ -20,6 +20,7 @@ return {
 
             -- custom mappings
             vim.keymap.set('n', '<C-e>', api.tree.toggle, opts('Toggle'))
+            vim.keymap.del('n', '<C-t>', { buffer = bufnr })
         end
 
         -- empty setup using defaults
