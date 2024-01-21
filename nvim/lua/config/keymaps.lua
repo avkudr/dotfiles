@@ -75,7 +75,7 @@ keymap("n", "<C-Right>", ":vertical :resize +2<CR>", { silent = true, desc = "In
 -- Clangd
 keymap("n", "<F4>", "<cmd>ClangdSwitchSourceHeader<CR>", { silent = true, desc = "Switch source/header cpp" })
 
---Nvim-tree
+-- Nvim-tree
 keymap("n", "<C-e>", "<cmd>NvimTreeToggle<CR>", { silent = true, desc = "Toggle nvim tree" })
 
 ------------------------ Insert Mode -------------------------------------------
