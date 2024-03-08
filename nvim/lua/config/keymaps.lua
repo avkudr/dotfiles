@@ -20,10 +20,10 @@ keymap("n", "<leader>bd", "<cmd>Bdelete!<CR>", { desc = "Delete current buffer" 
 -- cmake
 keymap("n", "<leader>cg", "<cmd>CMakeGenerate<CR>", { desc = "Generate" })
 keymap("n", "<leader>cx", "<cmd>CMakeGenerate!<CR>", { desc = "Clean and generate" })
-keymap("n", "<leader>cb", "<cmd>TroubleClose<CR><cmd>CMakeBuild<CR>", { desc = "Build" })
-keymap("n", "<leader>cr", "<cmd>TroubleClose<CR><cmd>CMakeRun<CR>", { desc = "Run" })
+keymap("n", "<leader>cb", "<cmd>CMakeStopExecutor<CR><cmd>CMakeStopRunner<CR><cmd>CMakeBuild<CR>", { desc = "Build" })
+keymap("n", "<leader>cr", "<cmd>CMakeStopExecutor<CR><cmd>CMakeStopRunner<CR><cmd>CMakeRun<CR>", { desc = "Run" })
 keymap("n", "<leader>cy", "<cmd>CMakeSelectBuildType<CR>", { desc = "Select Build Type" })
-keymap("n", "<leader>cl", "<cmd>CMakeSelectTarget<CR>", { desc = "Select Target" })
+keymap("n", "<leader>ct", "<cmd>CMakeSelectTarget<CR>", { desc = "Select Target" })
 keymap("n", "<leader>ce", "<cmd>CMakeOpenExecutor<CR>", { desc = "Open CMake Console" })
 keymap("n", "<leader>cc", "<cmd>CMakeCloseExecutor<CR>", { desc = "Close CMake Console" })
 keymap("n", "<leader>ci", "<cmd>CMakeInstall<CR>", { desc = "Intall CMake target" })
@@ -50,21 +50,7 @@ keymap("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = "Keymaps" })
 keymap("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Todos" })
 
 -- misc
-keymap({"n", "v"}, "<leader>d", [["_d]]) -- delete without overwriting the buffer
-
--- overseer
-keymap({"n", "v"}, "<leader>o<leader>", "<cmd>OverseerToggle<CR>")
-keymap({"n", "v"}, "<leader>os", "<cmd>OverseerQuickAction stop<CR>")
-keymap({"n", "v"}, "<leader>or", "<cmd>OverseerQuickAction restart<CR>")
-keymap({"n", "v"}, "<leader>oq", "<cmd>OverseerQuickAction open output in quickfix<CR>")
-keymap({"n", "v"}, "<leader>ox", "<cmd>OverseerQuickAction open output in quickfix<CR><cmd>ccl<CR><cmd>TroubleToggle quickfix<CR>")
-
--- trouble
-keymap("n", "<leader>x<leader>", function() require("trouble").toggle() end, { desc = "Show trouble" })
-keymap("n", "<leader>xn", function() require("trouble").next({skip_groups = true, jump = true}) end, { desc = "Jump to next trouble" })
-keymap("n", "<leader>xb", function() require("trouble").toggle("document_diagnostics") end, { desc = "Buffer diagnostics" })
-keymap("n", "<leader>xN", function() require("trouble").next({skip_groups = true, jump = true}) end, { desc = "Jump to previous trouble" })
-keymap("n", "<leader>xl", function() require("trouble").toggle("lsp_references") end, { desc = "Lsp references" })
+keymap({ "n", "v" }, "<leader>d", [["_d]]) -- delete without overwriting the buffer
 
 -- Resize
 keymap("n", "<C-Up>", ":resize +2<CR>", { silent = true, desc = "Increase window height" })
@@ -75,8 +61,9 @@ keymap("n", "<C-Right>", ":vertical :resize +2<CR>", { silent = true, desc = "In
 -- Clangd
 keymap("n", "<F4>", "<cmd>ClangdSwitchSourceHeader<CR>", { silent = true, desc = "Switch source/header cpp" })
 
--- Nvim-tree
-keymap("n", "<C-e>", "<cmd>NvimTreeToggle<CR>", { silent = true, desc = "Toggle nvim tree" })
+-- quickfix
+vim.keymap.set("n", "<A-j>", "<cmd>try | cnext | catch | cfirst | catch | endtry<CR>zz")
+vim.keymap.set("n", "<A-k>", "<cmd>try | cprev | catch | clast | catch | endtry<CR>zz")
 
 ------------------------ Insert Mode -------------------------------------------
 
@@ -86,4 +73,4 @@ keymap("n", "<C-e>", "<cmd>NvimTreeToggle<CR>", { silent = true, desc = "Toggle 
 
 ------------------------ Terminal Mode -----------------------------------------
 -- <C-\>: toggle terminal window
-keymap('t', '<esc>', [[<C-\><C-n>]], { silent = true })
+keymap("t", "<esc>", [[<C-\><C-n>]], { silent = true })

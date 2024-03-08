@@ -1,13 +1,13 @@
+---@diagnostic disable: codestyle-check
 return {
     dir = "~/opt/cmake-tools.nvim",
     lazy = false,
     priority = 999,
     dependencies = {
-        "stevearc/overseer.nvim",
     },
     config = function()
-    
-    
+
+
     require("cmake-tools").setup {
   cmake_command = "cmake", -- this is used to specify cmake command path
   ctest_command = "ctest", -- this is used to specify ctest command path
@@ -35,7 +35,7 @@ return {
     console = "integratedTerminal",
   },
   cmake_executor = { -- executor to use
-    name = "overseer", -- name of the executor
+    name = "quickfix", -- name of the executor
     opts = {}, -- the options the executor will get, possible values depend on the executor type. See `default_opts` for possible values.
     default_opts = { -- a list of default and possible values for executors
       quickfix = {
@@ -43,30 +43,12 @@ return {
         position = "belowright", -- "vertical", "horizontal", "leftabove", "aboveleft", "rightbelow", "belowright", "topleft", "botright", use `:h vertical` for example to see help on them
         size = 10,
         encoding = "utf-8", -- if encoding is not "utf-8", it will be converted to "utf-8" using `vim.fn.iconv`
-        auto_close_when_success = true, -- typically, you can use it with the "always" option; it will auto-close the quickfix buffer if the execution is successful.
+        auto_close_when_success = false, -- typically, you can use it with the "always" option; it will auto-close the quickfix buffer if the execution is successful.
       },
-      overseer = {
-        new_task_opts = {
-            strategy = {
-                "toggleterm",
-                direction = "horizontal",
-                auto_scroll = true,
-                quit_on_exit = "always"
-            }
-        }, -- options to pass into the `overseer.new_task` command
-        on_new_task = function(task)
-            require("overseer").open(
-                { 
-                    enter = false, 
-                    direction = "right" 
-                }
-            )
-        end,   -- a function that gets overseer.Task when it is created, before calling `task:start`
-      }
     },
   },
   cmake_runner = { -- runner to use
-    name = "overseer", -- name of the runner
+    name = "quickfix", -- name of the runner
     opts = {}, -- the options the runner will get, possible values depend on the runner type. See `default_opts` for possible values.
     default_opts = { -- a list of default and possible values for runners
       quickfix = {
@@ -75,34 +57,6 @@ return {
         size = 10,
         encoding = "utf-8",
         auto_close_when_success = false, -- typically, you can use it with the "always" option; it will auto-close the quickfix buffer if the execution is successful.
-      },
-      overseer = {
-        new_task_opts = {
-            strategy = {
-                "toggleterm",
-                direction = "horizontal",
-                auto_scroll = true,
-                quit_on_exit = "success"
-            }
-        }, -- options to pass into the `overseer.new_task` command
-        on_new_task = function(task)
-        end,   -- a function that gets overseer.Task when it is created, before calling `task:start`
-      },
-      terminal = {
-        name = "Main Terminal",
-        prefix_name = "[CMakeTools]: ", -- This must be included and must be unique, otherwise the terminals will not work. Do not use a simple spacebar " ", or any generic name
-        split_direction = "vertical", -- "horizontal", "vertical"
-        split_size = 400,
-
-        -- Window handling
-        single_terminal_per_instance = true, -- Single viewport, multiple windows
-        single_terminal_per_tab = true, -- Single viewport per tab
-        keep_terminal_static_location = true, -- Static location of the viewport if avialable
-
-        -- Running Tasks
-        start_insert = false, -- If you want to enter terminal with :startinsert upon using :CMakeRun
-        focus = false, -- Focus on terminal when cmake task is launched.
-        do_not_add_newline = false, -- Do not hit enter on the command inserted when using :CMakeRun, allowing a chance to review or modify the command before hitting enter.
       },
     },
   },
@@ -139,8 +93,8 @@ function select_cmake_target(opts)
                 actions.close(prompt_bufnr)
                 local selection = action_state.get_selected_entry()
                 local target = data.targets[selection.index]
-                cmake.get_config().build_target = target 
-                cmake.get_config().launch_target = target 
+                cmake.get_config().build_target = target
+                cmake.get_config().launch_target = target
             end)
             return true
         end,
