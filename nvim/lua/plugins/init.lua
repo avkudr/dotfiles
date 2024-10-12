@@ -5,4 +5,5 @@ return {
   "moll/vim-bbye", -- Bdelete command
   "tpope/vim-fugitive", -- Git
   "nvim-tree/nvim-web-devicons", -- Icons
+  "tikhomirov/vim-glsl", -- GLSL highlight
 }
