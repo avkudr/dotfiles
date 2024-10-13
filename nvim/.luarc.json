@@ -1,0 +1,9 @@
+{
+    "diagnostics.globals": [
+        "vim",
+        "select_cmake_target"
+    ],
+    "diagnostics.disable": [
+        "codestyle-check"
+    ]
+}

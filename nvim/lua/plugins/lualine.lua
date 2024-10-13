@@ -7,8 +7,6 @@ return {
   config = function()
     local lualine = require("lualine")
 
-    local cmake = require("cmake-tools")
-
     -- Credited to [evil_lualine](https://github.com/nvim-lualine/lualine.nvim/blob/master/examples/evil_lualine.lua)
     local conditions = {
       buffer_not_empty = function()
@@ -23,6 +21,8 @@ return {
         return gitdir and #gitdir > 0 and #gitdir < #filepath
       end,
     }
+
+    local cmake = require('nvim-cmake')
 
     -- stylua: ignore start
     local c = require('onedark.colors')
@@ -104,121 +104,6 @@ return {
       color = { fg = colors.fg, gui = "bold" },
     }
 
-    ins_left {
-      function()
-        local c_preset = cmake.get_configure_preset()
-        return "CMake: [" .. (c_preset and c_preset or "X") .. "]"
-      end,
-      cond = function()
-        return cmake.is_cmake_project() and cmake.has_cmake_preset()
-      end,
-      on_click = function(n, mouse)
-        if (n == 1) then
-          if (mouse == "l") then
-            vim.cmd("CMakeSelectConfigurePreset")
-          end
-        end
-      end
-    }
-
-    ins_left {
-      function()
-        local type = cmake.get_build_type()
-        return "CMake: [" .. (type and type or "") .. "]"
-      end,
-      cond = function()
-        return cmake.is_cmake_project() and not cmake.has_cmake_preset()
-      end,
-      on_click = function(n, mouse)
-        if (n == 1) then
-          if (mouse == "l") then
-            vim.cmd("CMakeSelectBuildType")
-          end
-        end
-      end
-    }
-
-    ins_left {
-      function()
-        local kit = cmake.get_kit()
-        return "{" .. (kit and kit or "X") .. "}"
-      end,
-      cond = function()
-        return cmake.is_cmake_project() and not cmake.has_cmake_preset()
-      end,
-      on_click = function(n, mouse)
-        if (n == 1) then
-          if (mouse == "l") then
-            vim.cmd("CMakeSelectKit")
-          end
-        end
-      end
-    }
-
-    ins_left {
-      function()
-        local b_preset = cmake.get_build_preset()
-        return "[" .. (b_preset and b_preset or "X") .. "]"
-      end,
-      cond = function()
-        return cmake.is_cmake_project() and cmake.has_cmake_preset()
-      end,
-      on_click = function(n, mouse)
-        if (n == 1) then
-          if (mouse == "l") then
-            vim.cmd("CMakeSelectBuildPreset")
-          end
-        end
-      end
-    }
-
-    ins_left {
-      function()
-        local l_target = cmake.get_launch_target()
-        return "(" .. (l_target and l_target or "X") .. ")"
-      end,
-      cond = cmake.is_cmake_project,
-      on_click = function(n, mouse)
-        if (n == 1) then
-          if (mouse == "l") then
-            vim.cmd("CMakeTargetSelect")
-          end
-        end
-      end
-    }
-    
-    ins_left {
-      function()
-        return "B"
-      end,
-      cond = function()
-        return cmake.is_cmake_project()
-      end,
-      on_click = function(n, mouse)
-        if (n == 1) then
-          if (mouse == "l") then
-            vim.cmd("CMakeBuild")
-          end
-        end
-      end
-    }
-    
-    ins_left {
-      function()
-        return "R"
-      end,
-      cond = function()
-        return cmake.is_cmake_project()
-      end,
-      on_click = function(n, mouse)
-        if (n == 1) then
-          if (mouse == "l") then
-            vim.cmd("CMakeRun")
-          end
-        end
-      end
-    }
-
     -- Insert mid section. You can make any number of sections in neovim :)
     -- for lualine it's any number greater then 2
     ins_left {
@@ -229,6 +114,13 @@ return {
 
     ins_right {
       "searchcount"
+    }
+
+    ins_right {
+        function()
+            return cmake.get_current_target_name()
+        end,
+        color = { fg = colors.fg, gui = "bold" }
     }
 
     -- Add components to right sections

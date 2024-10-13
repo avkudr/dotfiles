@@ -22,8 +22,7 @@ return {
         -- Put format options here
         defaultConfig = {
           indent_style = "space",
-          indent_size = "2",
-          quote_style = "double",
+          indent_size = "4",
           max_line_length = "unset"
         },
       },
