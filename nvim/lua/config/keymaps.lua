@@ -33,7 +33,13 @@ keymap("n", "<leader>cs", function()
 end, { desc = "Stop CMake Process" })
 
 -- find
-keymap("n", "<C-p>", "<cmd>Telescope git_files<CR>", { desc = "Git files" })
+-- keymap("n", "<C-p>", "<cmd>Telescope git_files<CR>", { desc = "Git files" })
+keymap('n', '<C-p>', function()
+    require('telescope.builtin').git_files({
+        file_ignore_patterns = {"3rdparty/.*", "projects/.*", "sequences/.*"}
+    })
+end, { desc = 'Git files' })
+
 keymap("n", "<leader>ff",
   [[<cmd>lua require('telescope.builtin').find_files()<CR>]],
   { desc = "Find files" })
