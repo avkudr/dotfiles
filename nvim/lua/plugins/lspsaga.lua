@@ -1,7 +1,15 @@
 return {
   "glepnir/lspsaga.nvim",
   event = "BufRead",
+  dependencies = {
+    { "nvim-tree/nvim-web-devicons" },
+    --Please make sure you install markdown and markdown_inline parser
+    { "nvim-treesitter/nvim-treesitter" },
+    { "j-hui/fidget.nvim" }
+  },
   config = function()
+    require("fidget").setup()
+
     require("lspsaga").setup({
       ui = {
         border = "single"
@@ -102,9 +110,4 @@ return {
       },
     })
   end,
-  dependencies = {
-    { "nvim-tree/nvim-web-devicons" },
-    --Please make sure you install markdown and markdown_inline parser
-    { "nvim-treesitter/nvim-treesitter" }
-  }
 }
