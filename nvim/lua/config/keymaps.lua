@@ -17,11 +17,14 @@ local keymap = vim.keymap.set
 -- buffers
 keymap("n", "<leader>bd", "<cmd>Bdelete!<CR>", { desc = "Delete current buffer" })
 
+-- buffers
+keymap("n", "<leader>oo", "<cmd>OverseerToggle<CR>", { desc = "Toggle overseer view" })
+
 -- cmake
 keymap("n", "<leader>cg", "<cmd>CMakeGenerate<CR>", { desc = "Generate" })
 keymap("n", "<leader>cx", "<cmd>CMakeGenerate!<CR>", { desc = "Clean and generate" })
-keymap("n", "<leader>cb", "<cmd>CMakeStopExecutor<CR><cmd>CMakeStopRunner<CR><cmd>CMakeBuild<CR>", { desc = "Build" })
-keymap("n", "<leader>cr", "<cmd>CMakeStopExecutor<CR><cmd>CMakeStopRunner<CR><cmd>CMakeRun<CR>", { desc = "Run" })
+keymap("n", "<leader>cb", "<cmd>CMakeBuildCurrent<CR>", { desc = "Build" })
+keymap("n", "<leader>cr", "<cmd>CMakeRun<CR>", { desc = "Run" })
 keymap("n", "<leader>cy", "<cmd>CMakeSelectBuildType<CR>", { desc = "Select Build Type" })
 keymap("n", "<leader>ct", "<cmd>CMakeTargetSelect<CR>", { desc = "Select Target" })
 keymap("n", "<leader>ce", "<cmd>CMakeOpenExecutor<CR>", { desc = "Open CMake Console" })
@@ -33,7 +36,13 @@ keymap("n", "<leader>cs", function()
 end, { desc = "Stop CMake Process" })
 
 -- find
-keymap("n", "<C-p>", "<cmd>Telescope git_files<CR>", { desc = "Git files" })
+-- keymap("n", "<C-p>", "<cmd>Telescope git_files<CR>", { desc = "Git files" })
+keymap('n', '<C-p>', function()
+    require('telescope.builtin').git_files({
+        file_ignore_patterns = {"3rdparty/.*", "projects/.*", "sequences/.*"}
+    })
+end, { desc = 'Git files' })
+
 keymap("n", "<leader>ff",
   [[<cmd>lua require('telescope.builtin').find_files()<CR>]],
   { desc = "Find files" })
