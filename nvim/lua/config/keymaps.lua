@@ -17,6 +17,9 @@ local keymap = vim.keymap.set
 -- buffers
 keymap("n", "<leader>bd", "<cmd>Bdelete!<CR>", { desc = "Delete current buffer" })
 
+-- buffers
+keymap("n", "<leader>oo", "<cmd>OverseerToggle<CR>", { desc = "Toggle overseer view" })
+
 -- cmake
 keymap("n", "<leader>cg", "<cmd>CMakeGenerate<CR>", { desc = "Generate" })
 keymap("n", "<leader>cx", "<cmd>CMakeGenerate!<CR>", { desc = "Clean and generate" })
