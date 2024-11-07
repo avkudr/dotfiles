@@ -9,6 +9,7 @@ return {
             highlights = {
                 ["comments"] = {fg = '$light_grey', bg = none, fmt = 'none'},
                 ["@comment"] = {fg = '$light_grey', bg = none, fmt = 'none'},
+                ["@constructor"] = {fmt = 'none'},
             }, -- Override highlight groups
         }
         require('onedark').load()
