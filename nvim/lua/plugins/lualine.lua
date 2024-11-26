@@ -22,7 +22,7 @@ return {
       end,
     }
 
-    local cmake = require('nvim-cmake')
+    local cmake = require('cmake-mate')
 
     -- stylua: ignore start
     local c = require('onedark.colors')

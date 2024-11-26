@@ -1,11 +1,10 @@
 return {
-    dir = "~/nvim-cmake",
-    branch = "main",
+    "avkudr/cmake-mate.nvim",
     dependencies = {
         "stevearc/overseer.nvim"
     },
     config = function()
-        local cmake = require("nvim-cmake")
+        local cmake = require("cmake-mate")
         cmake:setup()
     end,
 }
