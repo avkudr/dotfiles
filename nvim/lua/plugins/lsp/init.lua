@@ -18,7 +18,7 @@ return {
     config = function()
         require("mason").setup()
         require("mason-lspconfig").setup {
-            ensure_installed = { "glsl_analyzer", "clangd", "neocmake", "lua_ls", "rust_analyzer" },
+            ensure_installed = { "glsl_analyzer", "clangd", "lua_ls", "rust_analyzer" },
         }
 
         require "plugins.lsp.configs"

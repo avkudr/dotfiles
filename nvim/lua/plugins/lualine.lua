@@ -24,39 +24,6 @@ return {
 
     local cmake = require('cmake-mate')
 
-    -- stylua: ignore start
-    local c = require('onedark.colors')
-    local cfg = vim.g.onedark_config
-    local colors = {
-        bg = c.bg0,
-        fg = c.fg,
-        red = c.red,
-        green = c.green,
-        yellow = c.yellow,
-        blue = c.blue,
-        purple = c.purple,
-        cyan = c.cyan,
-        gray = c.grey
-    }
-
-    local one_dark = {
-        inactive = {
-            a = {fg = colors.gray, bg = colors.bg, gui = 'bold'},
-            b = {fg = colors.gray, bg = colors.bg},
-            c = {fg = colors.gray, bg = cfg.lualine.transparent and c.none or c.bg1},
-        },
-        normal = {
-            a = {fg = colors.bg, bg = colors.green, gui = 'bold'},
-            b = {fg = colors.fg, bg = c.bg3},
-            c = {fg = colors.fg, bg = cfg.lualine.transparent and c.none or c.bg1},
-        },
-        visual = {a = {fg = colors.bg, bg = colors.purple, gui = 'bold'}},
-        replace = {a = {fg = colors.bg, bg = colors.red, gui = 'bold'}},
-        insert = {a = {fg = colors.bg, bg = colors.blue, gui = 'bold'}},
-        command = {a = {fg = colors.bg, bg = colors.yellow, gui = 'bold'}},
-        terminal = {a = {fg = colors.bg, bg = colors.cyan, gui = 'bold'}},
-    }
-
     local config = {
       options = {
         icons_enabled = true,
@@ -64,7 +31,7 @@ return {
         section_separators = "",
         disabled_filetypes = { "alpha", "dashboard", "Outline" },
         always_divide_middle = true,
-        theme = one_dark,
+        theme = "catppuccin",
       },
       sections = {
         lualine_a = { "mode" },
@@ -101,7 +68,7 @@ return {
     ins_left {
       "filename",
       cond = conditions.buffer_not_empty,
-      color = { fg = colors.fg, gui = "bold" },
+      color = { gui = "bold" },
     }
 
     -- Insert mid section. You can make any number of sections in neovim :)
@@ -120,7 +87,7 @@ return {
         function()
             return cmake.get_current_target_name()
         end,
-        color = { fg = colors.fg, gui = "bold" }
+        color = { gui = "bold" }
     }
 
     -- Add components to right sections
@@ -133,7 +100,7 @@ return {
         local index = math.ceil(line_ratio * #chars)
         return chars[index]
       end,
-      color = { fg = colors.fg, gui = "bold" }
+      color = { gui = "bold" }
     }
 
     -- Now don't forget to initialize lualine
